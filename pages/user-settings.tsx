@@ -4,7 +4,7 @@ import Head from 'next/head';
 import nookies from 'nookies';
 
 // Components and others
-import Avatar from '../components/Avatar';
+import Avatar from '../components/common/Avatar';
 import InputBox from '../components/boxes/InputBox';
 import SubmitButton from '../components/buttons/SubmitButton';
 import { UserType } from '../config/firebaseTypes';
@@ -16,6 +16,7 @@ import {
   handleSubmitSourceCode,
   handleSubmitTaskTicket
 } from '../services/setUserDocToFirestore';
+import QuestionMark from '../components/common/QuestionMark';
 
 const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
   return (
@@ -117,9 +118,12 @@ const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
           </form>
         </div>
       </div>
-      <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
-        Source Code / GitHub
-      </h2>
+      <div className='flex'>
+        <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
+          Source Code / GitHub
+        </h2>
+        <QuestionMark mt={9} mb={1} />
+      </div>
       <form
         name='source-code'
         onSubmit={(e) => handleSubmitSourceCode(e, uid)}

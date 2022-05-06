@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import getAvatarUrl from '../services/getAnImageFromStorage';
+import getAvatarUrl from '../../services/getAnImageFromStorage';
 
 // @ts-ignore
 const Avatar = ({ userId }) => {

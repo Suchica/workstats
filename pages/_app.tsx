@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { AuthProvider } from '../auth';
-import Layout from '../components/Layout';
+import Layout from '../components/common/Layout';
 import '../styles/globals.css';
 // import Script from "next/script";
 

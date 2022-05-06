@@ -1,6 +1,6 @@
 import React from 'react';
-import LogOut from './common/Logout';
-import Sidebar from './common/Sidebar';
+import LogOut from './Logout';
+import Sidebar from './Sidebar';
 
 // @ts-ignore
 const Layout = ({ children }) => {
