@@ -23,7 +23,7 @@ const HowToGetGitHubInfo = () => {
   return (
     <>
       <Head>
-        <title>WorkStats</title>
+        <title>How to get GitHub Info - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -72,7 +72,10 @@ const HowToGetGitHubInfo = () => {
           </div>
         </div>
         <h2 className='text-2xl py-4'>2. Go to [User Settings]</h2>
-        <p className='py-1 pb-4'>Go to [User Settings] in the left sidebar.</p>
+        <p className='py-1 pb-4'>
+          Go to [User Settings] in the left sidebar or the gear icon beside
+          &apos;Coding - GitHub&apos;.
+        </p>
         <div className='flex place-content-evenly place-items-center'>
           <div className='relative aspect-video w-2/3'>
             <Image
@@ -190,25 +193,12 @@ const HowToGetGitHubInfo = () => {
           [Repository] and on the top left corner, you can see the repository
           name, its owner name, and its visibility as well.
         </p>
-        <div className='flex place-content-evenly place-items-center'>
-          <div className='relative aspect-video w-2/3'>
+        <div className='place-items-center'>
+          <div className='w-full'>
             <Image
               src={GitHubRepoTop}
               alt='Dashboard with an initial state'
-              layout='fill'
-              objectFit='contain'
-              quality={75}
-              priority={false}
-              placeholder='empty'
-            />
-          </div>
-          <div className='px-3'>{'=>'}</div>
-          <div className='relative aspect-video w-2/3'>
-            <Image
-              src={GitHubRepoVisibility}
-              alt='Dashboard with an initial state'
-              layout='fill'
-              objectFit='contain'
+              layout='intrinsic'
               quality={75}
               priority={false}
               placeholder='empty'

@@ -122,7 +122,7 @@ const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
         <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
           Source Code / GitHub
         </h2>
-        <QuestionMark mt={9} mb={1} />
+        <QuestionMark mt={9} mb={1} href='/help/how-to-get-github-info' />
       </div>
       <form
         name='source-code'

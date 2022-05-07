@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Head>
-        <title>WorkStats</title>
+        <title>Privacy Policy - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
       </Head>

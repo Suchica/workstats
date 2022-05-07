@@ -7,7 +7,7 @@ export default function TermsOfService() {
   return (
     <>
       <Head>
-        <title>WorkStats</title>
+        <title>Terms of Service - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
       </Head>

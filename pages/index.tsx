@@ -69,7 +69,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>WorkStats</title>
+        <title>Dashboard - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
         {/* <link

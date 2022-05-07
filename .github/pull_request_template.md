@@ -1,8 +1,8 @@
-## What is issue:
+## Problem:
 
 
 
-## How to resolve:
+## Solution:
 
 
 

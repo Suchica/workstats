@@ -17,7 +17,7 @@ const LogOut = () => {
   return (
     <button
       type='button' // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
-      className='w-20 h-8 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md absolute top-3.5 right-10'
+      className='w-20 h-8 bg-gray-700 hover:bg-gray-600 text-blue-100 hover:text-white font-bold rounded-md absolute top-3.5 right-5'
       onClick={() => {
         handleClick();
       }}

@@ -16,7 +16,7 @@ import TotalTimeOfMeetings from './TotalTimeOfMtgs';
 // import services
 import { handleClientLoad } from '../../services/googleCalendar.client';
 // import GoogleAuthButton from './Auth&SignInButton';
-import QuestionMark from '../common/QuestionMark';
+import GearIconLink from '../common/GearIcon';
 
 // @ts-ignore
 const CardList = ({
@@ -63,7 +63,7 @@ const CardList = ({
       <div className='container max-w-6xl px-5 my-5'>
         <div className='flex'>
           <h2 className='text-xl mt-4 mb-2'>Coding - GitHub</h2>
-          <QuestionMark mt={4} mb={2} />
+          <GearIconLink mt={5} mb={2} href='/user-settings' />
         </div>
         <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
           <NumberOfCommits
