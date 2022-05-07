@@ -15,7 +15,6 @@ import UserSettingsWithGoToHome from '../../public/help/UserSettings_GoToHome.pn
 import GitHubTopPage from '../../public/help/GitHub_TopPage.png';
 import GitHubUserName from '../../public/help/GitHub_UserName.png';
 import GitHubRepoTop from '../../public/help/GitHub_RepoTop.png';
-import GitHubRepoVisibility from '../../public/help/GitHub_RepoVisibility.png';
 import ChromeRequestGitHubAPI from '../../public/help/Chrome_RequestGitHubAPI.png';
 import ChromeResponseGitHubAPI from '../../public/help/Chrome_ResponseGitHubAPI.png';
 
