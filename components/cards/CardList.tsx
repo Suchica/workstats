@@ -63,7 +63,12 @@ const CardList = ({
       <div className='container max-w-6xl px-5 my-5'>
         <div className='flex'>
           <h2 className='text-xl mt-4 mb-2'>Coding - GitHub</h2>
-          <GearIconLink mt={5} mb={2} href='/user-settings' />
+          <GearIconLink
+            mt={5}
+            mb={2}
+            href='/user-settings'
+            alt='Gear icon links to user settings'
+          />
         </div>
         <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
           <NumberOfCommits
@@ -82,7 +87,15 @@ const CardList = ({
             githubUserName={githubUserName}
           />
         </div>
-        <h2 className='text-xl mt-4 mb-2'>Tasks - Asana</h2>
+        <div className='flex'>
+          <h2 className='text-xl mt-4 mb-2'>Tasks - Asana</h2>
+          <GearIconLink
+            mt={5}
+            mb={2}
+            href='/user-settings'
+            alt='Gear icon links to user settings'
+          />
+        </div>
         <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
           <NumberOfCloseTasks
             asanaPersonalAccessToken={asanaPersonalAccessToken}
@@ -95,9 +108,17 @@ const CardList = ({
             asanaUserId={asanaUserId}
           />
         </div>
-        <h2 className='text-xl mt-4 mb-2'>
-          Communication - Slack, Google Calendar & Gmail
-        </h2>
+        <div className='flex'>
+          <h2 className='text-xl mt-4 mb-2'>
+            Communication - Slack, Google Calendar & Gmail
+          </h2>
+          <GearIconLink
+            mt={5}
+            mb={2}
+            href='/user-settings'
+            alt='Gear icon links to user settings'
+          />
+        </div>
         <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
           <NumberOfMentioned data={numberOfMentioned} />
           <NumberOfReplies data={numberOfReplies} />

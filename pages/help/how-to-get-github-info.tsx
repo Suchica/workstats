@@ -6,7 +6,7 @@ import React from 'react';
 // Images
 import GitHubIcon2 from '../../public/github-svgrepo-com.svg';
 import Top_Login from '../../public/help/Top_Login.png';
-import DashboardWithInitialState from '../../public/help/Dashboard_InitialState.png';
+import DashboardWithInitialState from '../../public/help/Dashboard_GitHub_InitialState.png';
 import DashboardWithGoToSettings from '../../public/help/Dashboard_GoToUserSettings.png';
 import DashboardWithGitHubAggregated from '../../public/help/Dashboard_GitHubAggregated.png';
 import UserSettingsWithGitHubInfo from '../../public/help/UserSettings_GitHubInfo.png';
@@ -40,7 +40,7 @@ const HowToGetGitHubInfo = () => {
             placeholder='empty'
           />
         </div>
-        <h2 className='text-2xl py-4'>1. First, your GitHub stats shows 0</h2>
+        <h2 className='text-2xl py-4'>1. Your GitHub stats shows 0</h2>
         <p className='py-1 pb-4'>
           After you signed in, you will be navigated to home dashboard screen
           and then you can see your stats which shows 0.
@@ -49,7 +49,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={Top_Login}
-              alt='Dashboard with an initial state'
+              alt='Log in screen'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -79,7 +79,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={DashboardWithGoToSettings}
-              alt='Dashboard with an initial state'
+              alt='User Settings links in the Dashboard'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -91,7 +91,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={UserSettingsWithGitHubInfo}
-              alt='Dashboard with an initial state'
+              alt='User Settings with GitHub info'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -101,7 +101,7 @@ const HowToGetGitHubInfo = () => {
           </div>
         </div>
         <p className='py-1 pt-4'>
-          Now you can see what are GitHub settings. There are several items
+          Now you can see what GitHub settings are. There are several items
           below;
         </p>
         <ul className='py-1 pb-4 list-disc list-inside' role='list'>
@@ -113,7 +113,12 @@ const HowToGetGitHubInfo = () => {
         </ul>
         <h2 className='text-2xl py-4'>
           3. Go to{' '}
-          <a className='py-1 text-blue-600' href='https://github.com/'>
+          <a
+            className='py-1 text-blue-600'
+            href='https://github.com/'
+            target='_blank'
+            rel='noreferrer noopener' // Must pair with target='_blank'
+          >
             [GitHub Web Site]
           </a>
         </h2>
@@ -127,7 +132,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={GitHubTopPage}
-              alt='Dashboard with an initial state'
+              alt='GitHub top page'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -139,7 +144,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={GitHubUserName}
-              alt='Dashboard with an initial state'
+              alt='GitHub user name'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -152,7 +157,11 @@ const HowToGetGitHubInfo = () => {
         <p className='py-1 pb-4'>
           The easiest way to get a user ID is to call the API from your browser.
           Set{' '}
-          <a className='py-1 text-blue-600'>
+          <a
+            className='py-1 text-blue-600'
+            target='_blank'
+            rel='noreferrer noopener' // Must pair with target='_blank'
+          >
             https://api.github.com/users/$userName
           </a>{' '}
           (Replace $userName with your username) in the URL field of your
@@ -163,7 +172,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={ChromeRequestGitHubAPI}
-              alt='Dashboard with an initial state'
+              alt='GitHub API request'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -175,7 +184,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={ChromeResponseGitHubAPI}
-              alt='Dashboard with an initial state'
+              alt='GitHub API response'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -192,18 +201,15 @@ const HowToGetGitHubInfo = () => {
           [Repository] and on the top left corner, you can see the repository
           name, its owner name, and its visibility as well.
         </p>
-        <div className='place-items-center'>
-          <div className='w-full'>
-            <Image
-              src={GitHubRepoTop}
-              alt='Dashboard with an initial state'
-              layout='intrinsic'
-              quality={75}
-              priority={false}
-              placeholder='empty'
-            />
-          </div>
-        </div>
+        <Image
+          src={GitHubRepoTop}
+          alt='GitHub repository top page'
+          layout='intrinsic'
+          quality={75}
+          priority={false}
+          placeholder='empty'
+          className='w-full'
+        />
         <p className='py-1 pt-4'>
           In this example, the info you get is as follows:
         </p>
@@ -224,7 +230,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={UserSettingsWithGitHubInfo}
-              alt='Dashboard with an initial state'
+              alt='User Settings with GitHub info'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -236,7 +242,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={UserSettingsWithGitHubInfoFulfilled}
-              alt='Dashboard with an initial state'
+              alt='User Settings with GitHub info fulfilled'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -257,7 +263,12 @@ const HowToGetGitHubInfo = () => {
           If it is not tallying well, try reloading it several times. Or, check
           again to make sure the values you set are correct. If it still does
           not work, please contact{' '}
-          <a className='py-1 text-blue-600' href='mailto: info@suchica.com'>
+          <a
+            className='py-1 text-blue-600'
+            href='mailto: info@suchica.com'
+            target='_blank'
+            rel='noreferrer noopener' // Must pair with target='_blank'
+          >
             our help desk{' '}
           </a>
           .
@@ -266,7 +277,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={UserSettingsWithGoToHome}
-              alt='Dashboard with an initial state'
+              alt='User Settings with go to home'
               layout='fill'
               objectFit='contain'
               quality={75}
@@ -278,7 +289,7 @@ const HowToGetGitHubInfo = () => {
           <div className='relative aspect-video w-2/3'>
             <Image
               src={DashboardWithGitHubAggregated}
-              alt='Dashboard with an initial state'
+              alt='Dashboard with GitHub aggregated'
               layout='fill'
               objectFit='contain'
               quality={75}

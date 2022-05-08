@@ -22,7 +22,7 @@ const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
   return (
     <>
       <Head>
-        <title>WorkStats</title>
+        <title>User Settings - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -199,9 +199,12 @@ const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
           <SubmitButton />
         </div>
       </form>
-      <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
-        Task Ticket / Asana
-      </h2>
+      <div className='flex'>
+        <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
+          Task Ticket / Asana
+        </h2>
+        <QuestionMark mt={9} mb={1} href='/help/how-to-get-asana-info' />
+      </div>
       <form
         name='task-ticket'
         onSubmit={(e) => handleSubmitTaskTicket(e, uid)}
@@ -272,9 +275,12 @@ const userSettings = ({ uid, userDoc }: { uid: string; userDoc: UserType }) => {
           <SubmitButton />
         </div>
       </form>
-      <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
-        Communication Activity / Slack
-      </h2>
+      <div className='flex'>
+        <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
+          Communication Activity / Slack
+        </h2>
+        <QuestionMark mt={9} mb={1} href='/help/how-to-get-slack-info' />
+      </div>
       <form
         name='communication-activity'
         onSubmit={(e) => handleSubmitCommunicationActivity(e, uid)}
