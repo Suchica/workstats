@@ -52,7 +52,8 @@ const Login = () => {
             }
           });
         } else {
-          window.location.reload();
+          // window.location.reload();
+          console.log('error is: ', error);
         }
       });
   };
@@ -80,7 +81,8 @@ const Login = () => {
             }
           });
         } else {
-          window.location.reload();
+          // window.location.reload();
+          console.log('error is: ', error);
         }
       });
   };
