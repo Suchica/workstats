@@ -43,7 +43,7 @@ const NumberOfPullRequests = ({
           </div>
         </div>
         <div>
-          <div className='text-gray-400'># of PRs</div>
+          <div className='text-gray-400'># of pull reqs</div>
           <div className=' text-2xl font-bold text-gray-900'>{data} times</div>
         </div>
       </div>
