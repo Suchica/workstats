@@ -2,6 +2,7 @@
   "name": "polygon-hr",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://workstats.dev",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
