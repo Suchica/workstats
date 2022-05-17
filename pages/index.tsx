@@ -205,12 +205,20 @@ export const getServerSideProps: GetServerSideProps = async (
         listTimestampInSlack(channel, slackUserToken)
       );
     });
+    // console.log(
+    //   'listTimestampInSlackPromises is: ',
+    //   listTimestampInSlackPromises
+    // );
 
     (await Promise.all(listTimestampInSlackPromises)).map(
       // @ts-ignore
       ({ channel, result }) => {
         const timestampList: [] = result;
+        // console.log('channel is: ', channel);
+        // console.log('timestampListLength is: ', timestampList.length);
+        // console.log('timestampList is: ', timestampList);
         timestampList.map((timestamp: number) => {
+          // console.log('timestamp is: ', timestamp);
           numberOfRepliesPromises.push(
             countRepliesInSlack(
               channel,
@@ -229,6 +237,7 @@ export const getServerSideProps: GetServerSideProps = async (
       // @ts-ignore
       (n) => (numberOfReplies += n)
     );
+    // console.log('numberOfReplies is: ', numberOfReplies);
 
     // Pass data to the page via props
     return {

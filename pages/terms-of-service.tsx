@@ -207,7 +207,12 @@ export default function TermsOfService() {
           If you are one of the organizations listed in paragraph 2 above and
           are interested in linking to our website, you must inform us by
           sending an{' '}
-          <a className='py-1 text-blue-600' href='mailto: info@suchica.com'>
+          <a
+            className='py-1 text-blue-600'
+            href='mailto: info@suchica.com'
+            target='_blank'
+            rel='noreferrer noopener' // Must pair with target='_blank'
+          >
             e-mail{' '}
           </a>
           to Suchica, Inc.. Please include your name, your organization name,
