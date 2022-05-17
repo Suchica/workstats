@@ -73,11 +73,14 @@ const Sidebar = () => {
             Privacy Policy
           </a>
         </Link>
-        <Link href='/contact-us'>
-          <a className='block py-2 px-4 rounded hover:bg-gray-700 hover:text-white'>
-            Contact Us
-          </a>
-        </Link>
+        <a
+          className='block py-2 px-4 rounded hover:bg-gray-700 hover:text-white'
+          href='mailto: info@suchica.com?subject=WorkStats Feedback'
+          target='_blank'
+          rel='noreferrer noopener' // Must pair with target='_blank'
+        >
+          Contact Us
+        </a>
         {/* <Link href="/company">
           <a className="block py-2 px-4 rounded hover:bg-gray-700 hover:text-white">
             Company
