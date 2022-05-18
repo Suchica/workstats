@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, FC } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from './config/firebaseClient';
 import Login from './components/common/Login';
 import Loading from './components/common/Loading';
@@ -8,7 +8,13 @@ import nookies from 'nookies';
 const AuthContext = createContext({});
 // console.log('AuthContext is: ', AuthContext);
 
-export const AuthProvider: FC = ({ children }) => {
+type AuthProviderProps = {
+  children?: React.ReactNode | React.ReactNode[];
+};
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  // @ts-ignore
+  // export const AuthProvider: FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [loading, setLoading] = useState(true);
 

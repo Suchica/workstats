@@ -31,7 +31,8 @@ const useNumberOfCommits = (
       return item.author.id === githubUserId;
     });
     // console.log(filteredResponse);
-    return filteredResponse[0].total;
+    const output: number = filteredResponse[0].total;
+    return output;
   };
   const { data, error } = useSWR(url, fetcher, options);
 
@@ -39,7 +40,8 @@ const useNumberOfCommits = (
     console.log(`Failed to load number of commits: ${error}`);
     return 0;
   } else if (!data) {
-    return console.log('Loading number of commits...');
+    console.log('Loading number of commits...');
+    return 0;
   } else {
     return data;
   }
@@ -98,7 +100,8 @@ const useNumberOfPullRequests = (
     console.log(`Failed to load number of pull requests: ${error}`);
     return 0;
   } else if (!data) {
-    return console.log('Loading number of pull requests...');
+    console.log('Loading number of pull requests...');
+    return 0;
   } else {
     // console.log(data);
     return data;
