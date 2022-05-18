@@ -80,14 +80,12 @@ const countRepliesInSlack = async (
   });
   const data = await res.json();
   if (data.messages === undefined || data.messages.length === 0) {
-    // console.log('data.messages is: ', data.messages);
     return 0;
   }
   // @ts-ignore
   const result = data.messages.filter((item) => {
     return item.ts !== timestamp && item.user === userId;
   });
-  // console.log('number of replies is', result.length);
   return result.length;
 };
 

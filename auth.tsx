@@ -13,8 +13,6 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  // @ts-ignore
-  // export const AuthProvider: FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [loading, setLoading] = useState(true);
 
