@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap --config sitemap.config.js",
-    "start": "next build && next-sitemap --config sitemap.config.js && next start",
+    "start": "next build && next start",
     "lint": "next lint",
     "test": "jest --watch",
     "cypress": "cypress open"
