@@ -9,6 +9,40 @@ const options = {
   revalidateOnReconnect: false
 };
 
+// Request a user's GitHub identity
+// THe official document is here https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#1-request-a-users-github-identity
+const requestGithubUserIdentity = () => {
+  const scopes =
+    'repo:status repo_deployment read:org read:user user:email read:discussion';
+  const unguessableRandomString = (outputLength: number) => {
+    const stringPool =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    return Array.from({ length: outputLength }, () =>
+      stringPool.charAt(Math.floor(Math.random() * stringPool.length))
+    ).join('');
+  };
+  interface PramsTypes {
+    client_id: string;
+    // redirect_uri: string;
+    scope: string;
+    state: string;
+    allow_signup: string;
+    [key: string]: string; // To avoid type error ts(7053) in params[key]
+  }
+  const params: PramsTypes = {
+    client_id: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || '',
+    // redirect_uri: 'https://auth.workstats.dev/__/auth/handler',
+    scope: scopes,
+    state: unguessableRandomString(16),
+    allow_signup: 'false'
+  };
+  const queryString = Object.keys(params)
+    .map((key) => `${key}=${encodeURIComponent(params[key])}`)
+    .join('&');
+  const url = `https://github.com/login/oauth/authorize?${queryString}`;
+  window.location.href = url;
+};
+
 // Get a number of commits for a specific user
 // The official document is here https://docs.github.com/en/rest/reference/metrics#get-all-contributor-commit-activity
 const useNumberOfCommits = (
@@ -145,4 +179,9 @@ const useNumberOfReviews = (
   }
 };
 
-export { useNumberOfCommits, useNumberOfPullRequests, useNumberOfReviews };
+export {
+  useNumberOfCommits,
+  useNumberOfPullRequests,
+  useNumberOfReviews,
+  requestGithubUserIdentity
+};

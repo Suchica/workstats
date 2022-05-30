@@ -1,7 +1,16 @@
 import { useNumberOfCommits } from '../../services/githubServices.client';
 
-// @ts-ignore
-const NumberOfCommits = ({ githubOwnerName, githubRepoName, githubUserId }) => {
+interface PropTypes {
+  githubOwnerName: string;
+  githubRepoName: string;
+  githubUserId: number;
+}
+
+const NumberOfCommits = ({
+  githubOwnerName,
+  githubRepoName,
+  githubUserId
+}: PropTypes) => {
   const data = useNumberOfCommits(
     githubOwnerName,
     githubRepoName,
@@ -32,7 +41,9 @@ const NumberOfCommits = ({ githubOwnerName, githubRepoName, githubUserId }) => {
         </div>
         <div>
           <div className='text-gray-400'># of commits</div>
-          <div className=' text-2xl font-bold text-gray-900'>{data} times</div>
+          <div className='text-2xl font-bold text-gray-900 text-left'>
+            {data} times
+          </div>
         </div>
       </div>
     </div>

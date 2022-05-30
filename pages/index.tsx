@@ -5,6 +5,7 @@ import nookies from 'nookies';
 
 // Config
 import { verifyIdToken } from '../firebaseAdmin';
+import { UserType } from '../config/firebaseTypes';
 
 // Components
 import ProfileList from '../components/common/ProfileList';
@@ -23,59 +24,41 @@ import {
 } from '../services/slackServices.server';
 import getAUserDoc from '../services/getAUserDocFromFirebase';
 
-export default function Home({
-  // @ts-ignore
-  numberOfMentioned,
-  // @ts-ignore
-  numberOfNewSent,
-  // @ts-ignore
-  numberOfReplies,
-  // @ts-ignore
-  asanaWorkspaceId,
-  // @ts-ignore
-  asanaUserId,
-  // @ts-ignore
-  asanaPersonalAccessToken,
-  // @ts-ignore
-  githubOwnerName,
-  // @ts-ignore
-  githubRepoName,
-  // @ts-ignore
-  githubUserId,
-  // @ts-ignore
-  githubUserName,
-  // @ts-ignore
-  profileList,
-  // @ts-ignore
-  uid
-}) {
-  // const { currentUser } = useAuth();
-  // const [open, setOpen] = useState(false);
-  // const [alertType, setAlertType] = useState("success");
-  // const [alertMessage, setAlertMessage] = useState("");
-  // const showAlert = (type, msg) => {
-  //   setAlertType(type);
-  //   setAlertMessage(msg);
-  //   setOpen(true);
-  // };
-  // const handleClose = (event, reason) => {
-  //   if (reason === "clickaway") {
-  //     return;
-  //   }
-  //   setOpen(false);
-  // };
-  // console.log('userDoc is: ', userDoc);
+interface PropTypes {
+  numberOfMentioned: number;
+  numberOfNewSent: number;
+  numberOfReplies: number;
+  asanaWorkspaceId: string;
+  asanaUserId: string;
+  asanaPersonalAccessToken: string;
+  githubOwnerName: string;
+  githubRepoName: string;
+  githubUserId: number;
+  githubUserName: string;
+  profileList: UserType;
+  uid: string;
+}
 
+export default function Home({
+  numberOfMentioned,
+  numberOfNewSent,
+  numberOfReplies,
+  asanaWorkspaceId,
+  asanaUserId,
+  asanaPersonalAccessToken,
+  githubOwnerName,
+  githubRepoName,
+  githubUserId,
+  githubUserName,
+  profileList,
+  uid
+}: PropTypes) {
   return (
     <>
       <Head>
         <title>Dashboard - WorkStats</title>
         <meta name='description' content='WorkStats' />
         <link rel='icon' href='/favicon.ico' />
-        {/* <link
-          rel="stylesheet"
-          href="https://unpkg.com/@themesberg/flowbite@1.3.3/dist/flowbite.min.css"
-        /> */}
       </Head>
       {profileList && (
         <main className='flex'>
@@ -100,10 +83,6 @@ export default function Home({
             />
             <div className='h-10'></div>
           </div>
-          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-          {/* <script src="https://unpkg.com/@themesberg/flowbite@1.3.3/dist/flowbite.bundle.js" /> */}
-          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-          {/* <script src="https://unpkg.com/@themesberg/flowbite@1.3.3/dist/datepicker.bundle.js" /> */}
         </main>
       )}
     </>

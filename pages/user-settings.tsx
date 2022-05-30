@@ -1,11 +1,12 @@
-// Frameworks and libraries
+// Next.js and React related
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import nookies from 'nookies';
 
-// Components and others
+// Components and Services
 import Avatar from '../components/common/Avatar';
 import InputBox from '../components/boxes/InputBox';
 import SubmitButton from '../components/buttons/SubmitButton';
@@ -15,18 +16,67 @@ import getAUserDoc from '../services/getAUserDocFromFirebase';
 import {
   handleSubmitBasicInfo,
   handleSubmitCommunicationActivity,
+  handleSubmitGithubAccessToken,
   handleSubmitSourceCode,
   handleSubmitTaskTicket
 } from '../services/setDocToFirestore';
 import QuestionMark from '../components/common/QuestionMark';
 import NewTabIcon from '../public/new-tab-svgrepo-com.svg';
+import ConnectWithGithubButton from '../components/buttons/ConnectWithGithub';
+import DisconnectWithGithubButton from '../components/buttons/DisconnectWithGithubButton';
 
 interface UserSettingsProps {
   uid: string;
   userDoc: UserType | null;
+  isGithubAuthenticated: boolean;
 }
 
-const userSettings = ({ uid, userDoc }: UserSettingsProps) => {
+const useUserSettings = ({
+  uid,
+  userDoc,
+  isGithubAuthenticated
+}: UserSettingsProps) => {
+  // If a user click 'Connect with GitHub' button to agree to authenticate WorkStats with GitHub scopes, a code will be passed to the redirect URL.
+  const htmlParams = window.location.search;
+  const code = htmlParams.startsWith('?code=')
+    ? htmlParams.split(/[=&]+/)[1] // split by '=' or '&'
+    : undefined;
+
+  // If code is defined and isGithubAuthenticatedState is false, call /api/get-github-access-token to exchange the code for a GitHub access token
+  const [isGithubAuthenticatedState, setIsGithubAuthenticatedState] = useState(
+    isGithubAuthenticated
+  );
+  const [githubAccessToken, setGithubAccessToken] = useState('');
+  console.log({ isGithubAuthenticatedState, githubAccessToken });
+  useEffect(() => {
+    if (code && !isGithubAuthenticatedState) {
+      const url = '/api/get-github-access-token';
+      const headers = new Headers();
+      headers.append('Accept', 'application/json');
+      headers.append('Content-Type', 'application/json');
+      const body = {
+        code: code
+      };
+      fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(body)
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setGithubAccessToken(res.access_token);
+        });
+    }
+  }, [code, isGithubAuthenticatedState]);
+
+  // If githubAccessToken is defined and isGithubAuthenticatedState is false, update/insert the access token to Firestore
+  useEffect(() => {
+    if (githubAccessToken && !isGithubAuthenticatedState) {
+      handleSubmitGithubAccessToken(uid, githubAccessToken);
+      setIsGithubAuthenticatedState(true);
+    }
+  }, [githubAccessToken, isGithubAuthenticatedState, uid]);
+
   return (
     <>
       <Head>
@@ -131,6 +181,14 @@ const userSettings = ({ uid, userDoc }: UserSettingsProps) => {
           Source Code / GitHub
         </h2>
         <QuestionMark mt={9} mb={1} href='/help/how-to-get-github-info' />
+        {isGithubAuthenticatedState ? (
+          <DisconnectWithGithubButton
+            label='Disconnect with GitHub'
+            uid={uid}
+          />
+        ) : (
+          <ConnectWithGithubButton label='Connect with GitHub' />
+        )}
       </div>
       <form
         name='source-code'
@@ -155,6 +213,15 @@ const userSettings = ({ uid, userDoc }: UserSettingsProps) => {
             placeholder={'oliversmith'}
             width={36}
             value={userDoc?.github?.userName}
+          />
+          <InputBox
+            label={'Access Token'}
+            name={'githubAccessToken'}
+            placeholder={'No Access Token is set'}
+            width={36}
+            value={userDoc?.github?.accessToken}
+            disabled={true}
+            bgColor={'bg-gray-200'}
           />
         </div>
         <div className='flex flex-wrap items-center'>
@@ -406,7 +473,7 @@ const userSettings = ({ uid, userDoc }: UserSettingsProps) => {
   );
 };
 
-export default userSettings;
+export default useUserSettings;
 
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
@@ -416,8 +483,12 @@ export const getServerSideProps: GetServerSideProps = async (
     const token = await verifyIdToken(cookies.token);
     const { uid } = token;
     const userDoc = (await getAUserDoc(uid)) ? await getAUserDoc(uid) : null;
+    const isGithubAuthenticated =
+      userDoc?.github?.accessToken && userDoc?.github?.accessToken !== ''
+        ? true
+        : false;
     return {
-      props: { uid, userDoc }
+      props: { uid, userDoc, isGithubAuthenticated }
     };
   } else {
     return { props: {} as never };

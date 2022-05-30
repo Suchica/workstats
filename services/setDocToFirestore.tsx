@@ -34,13 +34,28 @@ const handleSubmitBasicInfo = async (
   return;
 };
 
+const handleSubmitGithubAccessToken = async (
+  docId: string,
+  githubAccessToken: string
+) => {
+  const docRef = doc(db, 'users', docId);
+  const docData = {
+    github: {
+      accessToken: githubAccessToken
+    }
+  };
+  const option = { merge: true };
+  await setDoc(docRef, docData, option);
+  return;
+};
+
 const handleSubmitSourceCode = async (
   event: React.FormEvent<HTMLFormElement>,
   docId: string
 ) => {
   event.preventDefault();
   const docRef = doc(db, 'users', docId);
-  const docData = {
+  const docData: UserType = {
     github: {
       repositories: [
         {
@@ -71,7 +86,7 @@ const handleSubmitTaskTicket = async (
 ) => {
   event.preventDefault();
   const docRef = doc(db, 'users', docId);
-  const docData = {
+  const docData: UserType = {
     asana: {
       userId: event.currentTarget.asanaUserId.value,
       workspace: [
@@ -103,7 +118,7 @@ const handleSubmitCommunicationActivity = async (
 ) => {
   event.preventDefault();
   const docRef = doc(db, 'users', docId);
-  const docData = {
+  const docData: UserType = {
     slack: {
       workspace: [
         {
@@ -156,6 +171,7 @@ const handleSubmitSurveyWhyYouLeave = async (
 export {
   createUserDoc,
   handleSubmitBasicInfo,
+  handleSubmitGithubAccessToken,
   handleSubmitSourceCode,
   handleSubmitTaskTicket,
   handleSubmitCommunicationActivity,
