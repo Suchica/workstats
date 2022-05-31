@@ -18,29 +18,34 @@ import NumberOfReviews from './NumberOfReview';
 // import GoogleAuthButton from './Auth&SignInButton';
 import GearIconLink from '../common/GearIcon';
 
+interface PropTypes {
+  numberOfMentioned: number;
+  numberOfNewSent: number;
+  numberOfReplies: number;
+  asanaWorkspaceId: string;
+  asanaUserId: string;
+  asanaPersonalAccessToken: string;
+  githubOwnerName: string;
+  githubRepoName: string;
+  githubUserId: number;
+  githubUserName: string;
+  githubAccessToken: string;
+}
+
 // @ts-ignore
 const CardList = ({
-  // @ts-ignore
   numberOfMentioned,
-  // @ts-ignore
   numberOfNewSent,
-  // @ts-ignore
   numberOfReplies,
-  // @ts-ignore
   asanaWorkspaceId,
-  // @ts-ignore
   asanaUserId,
-  // @ts-ignore
   asanaPersonalAccessToken,
-  // @ts-ignore
   githubOwnerName,
-  // @ts-ignore
   githubRepoName,
-  // @ts-ignore
   githubUserId,
-  // @ts-ignore
-  githubUserName
-}) => {
+  githubUserName,
+  githubAccessToken
+}: PropTypes) => {
   // const numberOfMeetings = 0;
 
   return (
@@ -75,16 +80,19 @@ const CardList = ({
             githubOwnerName={githubOwnerName}
             githubRepoName={githubRepoName}
             githubUserId={githubUserId}
+            githubAccessToken={githubAccessToken}
           />
           <NumberOfPullRequests
             githubOwnerName={githubOwnerName}
             githubRepoName={githubRepoName}
             githubUserId={githubUserId}
+            githubAccessToken={githubAccessToken}
           />
           <NumberOfReviews
             githubOwnerName={githubOwnerName}
             githubRepoName={githubRepoName}
             githubUserName={githubUserName}
+            githubAccessToken={githubAccessToken}
           />
         </div>
         <div className='flex'>

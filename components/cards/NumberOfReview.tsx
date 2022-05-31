@@ -1,17 +1,23 @@
 import { useNumberOfReviews } from '../../services/githubServices.client';
 
+interface PropTypes {
+  githubOwnerName: string;
+  githubRepoName: string;
+  githubUserName: string;
+  githubAccessToken: string;
+}
+
 const NumberOfReviews = ({
-  // @ts-ignore
   githubOwnerName,
-  // @ts-ignore
   githubRepoName,
-  // @ts-ignore
-  githubUserName
-}) => {
+  githubUserName,
+  githubAccessToken
+}: PropTypes) => {
   const data = useNumberOfReviews(
     githubOwnerName,
     githubRepoName,
-    githubUserName
+    githubUserName,
+    githubAccessToken
   );
   // console.log(`data is: ${data}`);
   return (

@@ -4,17 +4,20 @@ interface PropTypes {
   githubOwnerName: string;
   githubRepoName: string;
   githubUserId: number;
+  githubAccessToken: string;
 }
 
 const NumberOfCommits = ({
   githubOwnerName,
   githubRepoName,
-  githubUserId
+  githubUserId,
+  githubAccessToken
 }: PropTypes) => {
   const data = useNumberOfCommits(
     githubOwnerName,
     githubRepoName,
-    githubUserId
+    githubUserId,
+    githubAccessToken
   );
 
   return (

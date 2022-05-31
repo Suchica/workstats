@@ -1,17 +1,23 @@
 import { useNumberOfPullRequests } from '../../services/githubServices.client';
 
+interface PropTypes {
+  githubOwnerName: string;
+  githubRepoName: string;
+  githubUserId: number;
+  githubAccessToken: string;
+}
+
 const NumberOfPullRequests = ({
-  // @ts-ignore
   githubOwnerName,
-  // @ts-ignore
   githubRepoName,
-  // @ts-ignore
-  githubUserId
-}) => {
+  githubUserId,
+  githubAccessToken
+}: PropTypes) => {
   const data = useNumberOfPullRequests(
     githubOwnerName,
     githubRepoName,
-    githubUserId
+    githubUserId,
+    githubAccessToken
   );
   return (
     <div className='bg-white shadow rounded-lg p-4 hover:bg-slate-200'>

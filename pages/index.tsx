@@ -35,6 +35,7 @@ interface PropTypes {
   githubRepoName: string;
   githubUserId: number;
   githubUserName: string;
+  githubAccessToken: string;
   profileList: UserType;
   uid: string;
 }
@@ -50,6 +51,7 @@ export default function Home({
   githubRepoName,
   githubUserId,
   githubUserName,
+  githubAccessToken,
   profileList,
   uid
 }: PropTypes) {
@@ -80,6 +82,7 @@ export default function Home({
               githubRepoName={githubRepoName}
               githubUserId={githubUserId}
               githubUserName={githubUserName}
+              githubAccessToken={githubAccessToken}
             />
             <div className='h-10'></div>
           </div>
@@ -137,6 +140,9 @@ export const getServerSideProps: GetServerSideProps = async (
     const githubUserId = userDoc?.github?.userId ? userDoc.github.userId : null;
     const githubUserName = userDoc?.github?.userName
       ? userDoc.github.userName
+      : null;
+    const githubAccessToken = userDoc?.github?.accessToken
+      ? userDoc.github.accessToken
       : null;
 
     // Parameters for slack
@@ -218,6 +224,7 @@ export const getServerSideProps: GetServerSideProps = async (
         githubOwnerName,
         githubUserId,
         githubUserName,
+        githubAccessToken,
         profileList,
         uid
       }

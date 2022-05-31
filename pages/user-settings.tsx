@@ -47,7 +47,6 @@ const useUserSettings = ({
     isGithubAuthenticated
   );
   const [githubAccessToken, setGithubAccessToken] = useState('');
-  console.log({ isGithubAuthenticatedState, githubAccessToken });
   useEffect(() => {
     if (code && !isGithubAuthenticatedState) {
       const url = '/api/get-github-access-token';

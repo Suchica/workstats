@@ -12,8 +12,7 @@ const options = {
 // Request a user's GitHub identity
 // THe official document is here https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#1-request-a-users-github-identity
 const requestGithubUserIdentity = () => {
-  const scopes =
-    'repo:status repo_deployment read:org read:user user:email read:discussion';
+  const scopes = 'repo read:org user read:discussion';
   const unguessableRandomString = (outputLength: number) => {
     const stringPool =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -48,7 +47,8 @@ const requestGithubUserIdentity = () => {
 const useNumberOfCommits = (
   owner: string,
   repo: string,
-  githubUserId: number
+  githubUserId: number,
+  accessToken?: string
 ) => {
   // console.log(`githubUserId is: ${githubUserId}`);
   const url = `${base}/repos/${owner}/${repo}/stats/contributors`;
@@ -57,6 +57,9 @@ const useNumberOfCommits = (
   }
   const headers = new Headers();
   headers.append('Accept', 'application/vnd.github.v3+json');
+  accessToken && accessToken !== ''
+    ? headers.append('Authorization', `token ${accessToken}`)
+    : null;
   const fetcher = async (url: string) => {
     const response = await fetch(url, {
       headers: headers
@@ -87,7 +90,8 @@ const useNumberOfCommits = (
 const useNumberOfPullRequests = (
   owner: string,
   repo: string,
-  githubUserId: number
+  githubUserId: number,
+  accessToken?: string
 ) => {
   const params = {
     state: 'closed', // or "open", "all"
@@ -104,6 +108,9 @@ const useNumberOfPullRequests = (
   // The official document is here: https://swr.vercel.app/docs/data-fetching
   const headers = new Headers();
   headers.append('Accept', 'application/vnd.github.v3+json');
+  accessToken && accessToken !== ''
+    ? headers.append('Authorization', `token ${accessToken}`)
+    : null;
   const fetcher = async (url: string) => {
     let count = 0;
     let totalCount = 0;
@@ -146,7 +153,8 @@ const useNumberOfPullRequests = (
 const useNumberOfReviews = (
   owner: string,
   repo: string,
-  githubUserName: string
+  githubUserName: string,
+  accessToken?: string
 ): number => {
   const params = {
     q: `is:pr repo:${owner}/${repo} reviewed-by:${githubUserName}`,
@@ -159,6 +167,9 @@ const useNumberOfReviews = (
 
   const headers = new Headers();
   headers.append('Accept', 'application/vnd.github.v3+json');
+  accessToken && accessToken !== ''
+    ? headers.append('Authorization', `token ${accessToken}`)
+    : null;
   const fetcher = async (url: string) => {
     const response = await fetch(url, {
       headers: headers
