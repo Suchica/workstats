@@ -23,8 +23,11 @@ const HowToGetGitHubInfo = () => {
     <>
       <Head>
         <title>How to get GitHub Info - WorkStats</title>
-        <meta name='description' content='WorkStats' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content='This help page explains the settings required to aggregate numbers from GitHub in WorkStats and how to configure them'
+        />
+        <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       <main className='px-5'>
         <div className='flex'>

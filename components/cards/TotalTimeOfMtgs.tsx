@@ -28,7 +28,7 @@ const TotalTimeOfMeetings = () => {
         </div>
         <div>
           <div className='text-gray-400'>Ttl time of mtgs</div>
-          <div className=' text-2xl font-bold text-gray-900'>0 times</div>
+          <div className=' text-2xl font-bold text-gray-900'>123 hours</div>
         </div>
       </div>
     </div>

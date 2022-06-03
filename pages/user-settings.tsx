@@ -80,8 +80,11 @@ const useUserSettings = ({
     <>
       <Head>
         <title>User Settings - WorkStats</title>
-        <meta name='description' content='WorkStats' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content='This is the user settings page. You can set the users basic information, GitHub aggregation information, Asana aggregation information, Slack aggregation information, etc. You can also unsubscribe from this page.'
+        />
+        <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       <div className='flex'>
         <div className='grid justify-items-center mt-5'>

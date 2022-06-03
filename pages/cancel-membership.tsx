@@ -28,8 +28,11 @@ const useCancelMembership = ({ uid }: CancelMembershipTypes) => {
     <>
       <Head>
         <title>Cancel Membership - WorkStats</title>
-        <meta name='description' content='WorkStats' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content='This is the page where users can unsubscribe from WorkStats. Users can leave by answering a questionnaire about the reason for leaving.'
+        />
+        <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       <main className='px-5'>
         <h1 className='text-3xl py-4'>Cancel Membership</h1>

@@ -6,7 +6,7 @@ const userList = () => {
     <Head>
       <title>User List - WorkStats</title>
       <meta name='description' content='WorkStats' />
-      <link rel='icon' href='/favicon.ico' />
+      <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
     </Head>
   );
 };

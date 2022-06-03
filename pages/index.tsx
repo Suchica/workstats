@@ -55,15 +55,33 @@ export default function Home({
   profileList,
   uid
 }: PropTypes) {
+  const contentLong =
+    'WorkStats is a dashboard tool for engineers and project managers engaged in system development to visualize their productivity and contributions in numbers. It aggregates various numbers from the platforms used by members and teams, such as GitHub for source control, Asana for task management, and Slack for communication tools.WorkStats';
+  const contentShort =
+    'is a dashboard tool for engineers and PMs to quantify their productivity, aggregating various numbers from GitHub, Asana, Slack, etc.';
   return (
     <>
       <Head>
         <title>Dashboard - WorkStats</title>
-        <meta name='description' content='WorkStats' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name='description' content={contentLong} />
+        <meta property='og:title' content='WorkStats' />
+        <meta property='og:description' content={contentShort} />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://workstats.dev' />
+        <meta property='og:image' content='../public/WorkStats_Dashboard.png' />
+        <meta property='og:image:alt' content='WorkStats' />
+        <meta property='og:image:type' content='image/png' />
+        <meta property='og:site_name' content='WorkStats' />
+        <meta property='og:locale' content='en_US' />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content='WorkStats' />
+        <meta name='twitter:site' content='@hnishio0105' />
+        <meta name='twitter:creator' content='@hnishio0105' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       {profileList && (
-        <main className='flex'>
+        <main className='flex min-h-screen'>
           <div className='flex-none w-72'>
             <Avatar userId={uid} />
             <ProfileList profileList={profileList} />
@@ -84,7 +102,7 @@ export default function Home({
               githubUserName={githubUserName}
               githubAccessToken={githubAccessToken}
             />
-            <div className='h-10'></div>
+            <div className='h-20'></div>
           </div>
         </main>
       )}

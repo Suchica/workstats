@@ -7,8 +7,11 @@ export default function PrivacyPolicy() {
     <>
       <Head>
         <title>Privacy Policy - WorkStats</title>
-        <meta name='description' content='WorkStats' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content='This is the WorkStats Privacy Policy page'
+        />
+        <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       <main className='px-5'>
         <h1 className='text-3xl py-4'>Privacy Policy for Suchica, Inc.</h1>
