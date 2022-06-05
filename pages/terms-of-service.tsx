@@ -22,7 +22,7 @@ export default function TermsOfService() {
         <p className='py-1'>
           These terms and conditions outline the rules and regulations for the
           use of Suchica, Inc.'s Website, located at{' '}
-          <a className='py-1 text-blue-600' href='https://workstats.io'>
+          <a className='py-1 text-blue-600' href='https://workstats.dev'>
             here
           </a>
           .

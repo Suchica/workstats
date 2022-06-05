@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
 
         <p className='py-1'>
           At WorkStats, accessible from{' '}
-          <a className='py-1 text-blue-600' href='https://workstats.io'>
+          <a className='py-1 text-blue-600' href='https://workstats.dev'>
             https://workstats.io
           </a>
           , one of our main priorities is the privacy of our visitors. This
