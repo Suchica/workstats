@@ -15,7 +15,7 @@ const Avatar = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className='object-center m-4'>
+    <div className='hidden md:grid md:object-center md:m-4 md:w-64 md:h-64'>
       <Image
         className='inline object-cover rounded-full'
         src={avatarUrl}

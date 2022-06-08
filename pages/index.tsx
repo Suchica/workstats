@@ -81,8 +81,8 @@ export default function Home({
         <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       {profileList && (
-        <main className='flex min-h-screen'>
-          <div className='flex-none w-72'>
+        <main className='md:flex min-h-screen'>
+          <div className='md:w-72'>
             <Avatar userId={uid} />
             <ProfileList profileList={profileList} />
           </div>

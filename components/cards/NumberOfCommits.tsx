@@ -21,10 +21,10 @@ const NumberOfCommits = ({
   );
 
   return (
-    <div className='bg-white shadow rounded-lg p-4 hover:bg-slate-200'>
+    <div className='bg-white shadow rounded-lg p-3 md:p-4 hover:bg-slate-200'>
       <div className='flex space-x-4 items-center'>
         <div>
-          <div className='bg-fuchsia-50 rounded-full w-12 h-12 text-fuchsia-400 flex justify-center items-center'>
+          <div className='bg-fuchsia-50 rounded-full w-5 h-5 md:w-12 md:h-12 text-fuchsia-400 flex justify-center items-center'>
             <svg
               width='32'
               height='32'
@@ -43,11 +43,14 @@ const NumberOfCommits = ({
           </div>
         </div>
         <div>
-          <div className='text-gray-400'># of commits</div>
-          <div className='text-2xl font-bold text-gray-900 text-left'>
+          <div className='text-gray-400 text-sm md:text-base'># of commits</div>
+          <div className='hidden md:contents md:text-2xl md:font-bold md:text-gray-900'>
             {data} times
           </div>
         </div>
+      </div>
+      <div className='md:hidden text-xl font-bold text-gray-900'>
+        {data} times
       </div>
     </div>
   );

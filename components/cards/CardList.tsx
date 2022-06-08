@@ -65,7 +65,7 @@ const CardList = ({
           console.error('Script failed to load google api', e);
         }}
       /> */}
-      <div className='container max-w-6xl px-5 my-5'>
+      <div className='container max-w-6xl px-5 my-1 md:my-5'>
         <div className='flex'>
           <h2 className='text-xl mt-4 mb-2'>Coding - GitHub</h2>
           <GearIconLink
@@ -75,7 +75,7 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
+        <div className='grid gap-3 md:gap-6 grid-cols-2 md:grid-cols-3'>
           <NumberOfCommits
             githubOwnerName={githubOwnerName}
             githubRepoName={githubRepoName}
@@ -104,7 +104,7 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
+        <div className='grid gap-3 md:gap-6 grid-cols-2 md:grid-cols-3'>
           <NumberOfCloseTasks
             asanaPersonalAccessToken={asanaPersonalAccessToken}
             asanaWorkspaceId={asanaWorkspaceId}
@@ -125,7 +125,7 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-6 grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
+        <div className='grid gap-3 md:gap-6 grid-cols-2 md:grid-cols-3'>
           <NumberOfMentioned data={numberOfMentioned} />
           <NumberOfReplies data={numberOfReplies} />
           <NumberOfNewSent data={numberOfNewSent} />

@@ -9,12 +9,12 @@ const SpecifyPeriodFromTo = () => {
   // }, []);
 
   return (
-    <div className='flex px-3 py-1 mx-2 my-1 items-center'>
+    <div className='flex flex-wrap px-3 py-1 mx-2 my-1 items-center'>
       <span className='text-slate-800 px-2'>From: </span>
       <div className='relative'>
-        <div className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
+        <div className='flex absolute inset-y-0 left-0 items-center pl-1.5 md:pl-3 pointer-events-none'>
           <svg
-            className='w-5 h-5 text-gray-400 dark:text-gray-400'
+            className='w-4 h-4 md:w-5 md:h-5 text-gray-400 dark:text-gray-400'
             fill='currentColor'
             viewBox='0 0 20 20'
             xmlns='http://www.w3.org/2000/svg'
@@ -30,15 +30,15 @@ const SpecifyPeriodFromTo = () => {
           // datepicker
           disabled // Temporarily disabled
           type='text'
-          className='bg-white text-gray-700 border border-gray-300 rounded-lg block w-44 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 px-2 py-1 pl-10'
+          className='text-sm md:text-base bg-white text-gray-700 border border-gray-300 rounded-lg block w-28 md:w-44 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 px-2 py-1 pl-6 md:pl-10 my-1'
           placeholder='mm/dd/yyyy'
         />
       </div>
       <span className='text-slate-800 px-2'>~ To: </span>
       <div className='relative'>
-        <div className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
+        <div className='flex absolute inset-y-0 left-0 items-center pl-1.5 md:pl-3 pointer-events-none'>
           <svg
-            className='w-5 h-5 text-gray-400 dark:text-gray-400'
+            className='w-4 h-4 md:w-5 md:h-5 text-gray-400 dark:text-gray-400'
             fill='currentColor'
             viewBox='0 0 20 20'
             xmlns='http://www.w3.org/2000/svg'
@@ -54,7 +54,7 @@ const SpecifyPeriodFromTo = () => {
           // datepicker
           disabled // Temporarily disabled
           type='text'
-          className='bg-white text-gray-700 border border-gray-300 rounded-lg block w-44 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 px-2 py-1 pl-10'
+          className='text-sm md:text-base bg-white text-gray-700 border border-gray-300 rounded-lg block w-28 md:w-44 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 px-2 py-1 pl-6 md:pl-10'
           placeholder='mm/dd/yyyy'
         />
       </div>

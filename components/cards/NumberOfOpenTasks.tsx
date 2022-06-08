@@ -14,10 +14,10 @@ const NumberOfOpenTasks = ({
     asanaUserId
   );
   return (
-    <div className='bg-white shadow rounded-lg p-4 hover:bg-slate-200'>
+    <div className='bg-white shadow rounded-lg p-3 md:p-4 hover:bg-slate-200'>
       <div className='flex space-x-4 items-center'>
         <div>
-          <div className='bg-emerald-50 rounded-full w-12 h-12 text-emerald-400 flex justify-center items-center'>
+          <div className='bg-emerald-50 rounded-full w-5 h-5 md:w-12 md:h-12 text-emerald-400 flex justify-center items-center'>
             <svg
               width='32'
               height='32'
@@ -36,8 +36,10 @@ const NumberOfOpenTasks = ({
           </div>
         </div>
         <div>
-          <div className='text-gray-400'># of open tasks</div>
-          <div className=' text-2xl font-bold text-gray-900'>
+          <div className='text-gray-400 text-sm md:text-base'>
+            # of open tasks
+          </div>
+          <div className='hidden md:contents md:text-2xl md:font-bold md:text-gray-900'>
             {/* @ts-ignore */}
             {numberOfTasks.numberOfOpened
               ? // @ts-ignore
@@ -46,6 +48,14 @@ const NumberOfOpenTasks = ({
             times
           </div>
         </div>
+      </div>
+      <div className='md:hidden text-xl font-bold text-gray-900'>
+        {/* @ts-ignore */}
+        {numberOfTasks.numberOfOpened
+          ? // @ts-ignore
+            numberOfTasks.numberOfOpened
+          : 0}{' '}
+        times
       </div>
     </div>
   );

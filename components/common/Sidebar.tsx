@@ -1,12 +1,24 @@
 import React from 'react';
 import Link from 'next/link';
+import HamburgerButton from './HamburgerButton';
 
-const Sidebar = () => {
+interface SidebarProps {
+  handleClick: () => void;
+}
+
+const Sidebar = ({ handleClick }: SidebarProps) => {
   return (
-    <div className='sidebar bg-gray-800 text-blue-100 w-56 space-y-6 py-7 px-2 flex-none'>
-      <a href='#' className='text-white flex items-center space-x-2 px-4'>
-        <span className='text-2xl font-bold'>WorkStats</span>
-      </a>
+    <div className='sidebar absolute md:sticky top-0 z-10 bg-gray-800 text-blue-100 w-9/12 md:w-52 h-screen space-y-1 py-7 px-2 flex-none'>
+      <div className='flex h-10'>
+        <a href='#' className='text-white text-2xl font-bold px-4'>
+          WorkStats
+        </a>
+        <HamburgerButton
+          color='text-blue-100'
+          handleClick={handleClick}
+          margin='m-0.5'
+        />
+      </div>
       <nav>
         <Link href='/'>
           <a className='block py-2 px-4 rounded hover:bg-gray-700 hover:text-white'>

@@ -88,7 +88,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - WorkStats</title>
+        <title>Login - WorkStats</title>
         <meta name='description' content={contentLong} />
         <meta property='og:title' content='WorkStats' />
         <meta property='og:description' content={contentShort} />
@@ -106,32 +106,15 @@ const Login = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
-      <div className='flex'>
-        <div className='grid gap-4 w-1/2 h-screen bg-white content-center justify-center justify-items-center'>
-          <p className='text-xl text-slate-900'>Log in with OAuth provider</p>
-          <button
-            className='text-white bg-blue-600 hover:bg-blue-800 font-bold rounded-md w-52 h-10'
-            onClick={loginWithGoogle}
-          >
-            <GoogleIcon className='text-white mr-2' />
-            Login with Google
-          </button>
-          <button
-            className='text-white bg-gray-600 hover:bg-gray-800 font-bold rounded-md w-52 h-10'
-            onClick={loginWithGithub}
-          >
-            <GitHubIcon className='text-white mr-2' />
-            Login with GitHub
-          </button>
-        </div>
-        <div className='grid gap-6 w-1/2 h-screen bg-slate-800 content-center justify-center justify-items-center'>
-          <h1 className='text-white text-5xl text-center'>
+      <div className='h-screen md:flex'>
+        <div className='grid gap-4 md:gap-6 md:w-1/2 h-3/5 md:h-screen bg-slate-800 content-center justify-center justify-items-center'>
+          <h1 className='text-white text-4xl md:text-5xl text-center'>
             Welcome to &quot;WorkStats&quot;
           </h1>
-          <p className='text-white text-2xl text-center'>
+          <p className='text-white text-xl md:text-2xl text-center'>
             This app visualizes contribution of you and your team in numbers!
           </p>
-          <p className='text-white text-2xl text-center'>
+          <p className='text-white text-xl md:text-2xl text-center'>
             Aggregate from the following services.
           </p>
           <div className='flex gap-3'>
@@ -176,6 +159,23 @@ const Login = () => {
               placeholder='empty'
             />
           </div>
+        </div>
+        <div className='grid gap-4 md:w-1/2 h-2/5 md:h-screen bg-white content-center justify-center justify-items-center'>
+          <p className='text-xl text-slate-900'>Log in with OAuth provider</p>
+          <button
+            className='text-white bg-blue-600 hover:bg-blue-800 font-bold rounded-md w-52 h-10'
+            onClick={loginWithGoogle}
+          >
+            <GoogleIcon className='text-white mr-2' />
+            Login with Google
+          </button>
+          <button
+            className='text-white bg-gray-600 hover:bg-gray-800 font-bold rounded-md w-52 h-10'
+            onClick={loginWithGithub}
+          >
+            <GitHubIcon className='text-white mr-2' />
+            Login with GitHub
+          </button>
         </div>
       </div>
     </>

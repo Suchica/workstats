@@ -1,10 +1,10 @@
-# polygonHR
+# WorkStats
 
 Currently under development. Please contact us if you are interested.
 
 ## Table of contents
 
-- [polygonHR](#polygonhr)
+- [WorkStats](#workstats)
   - [Table of contents](#table-of-contents)
   - [Description](#description)
   - [Landing Page](#landing-page)
@@ -23,7 +23,7 @@ Currently under development. Please contact us if you are interested.
 
 ## Description
 
-polygonHR is a dashboard tool to visualize the production and activity of your team and members. Specifically, you can get the following numbers from the tool.
+WorkStats is a dashboard tool to visualize the production and activity of your team and members. Specifically, you can get the following numbers from the tool.
 
 - Number of commit from GitHub
 - Number of review from GitHub
@@ -47,7 +47,7 @@ The procedure for creating a local repository and checking the site on the local
 - Install Node.js (LTS) from [the official node web site](https://nodejs.org/en/download/) by clicking the link or just searching like `install node for mac`
 - Open Terminal (for mac)
 - Change the current working directory to the location where you want the cloned directory (like home directory `~`)
-- `git clone https://github.com/Suchica/polygonHR.git` to clone polygonHR repository
+- `git clone https://github.com/Suchica/workstats.git` to clone WorkStats repository
 - `code .` to open the repository in VSCode or you can use your favorite editor
 - `npm install` to install necessary packages
 - ask admin to give you `secrets.json` and `.env.local`
