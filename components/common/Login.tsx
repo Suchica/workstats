@@ -95,7 +95,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - WorkStats</title>
+        <title>Login - WorkStats</title>
         <meta name='description' content={contentLong} />
         <meta property='og:title' content='WorkStats' />
         <meta property='og:description' content={contentShort} />
