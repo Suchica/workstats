@@ -143,6 +143,8 @@ const useNumberOfTasks = (
     const numberOfClosed: number = response['data']?.filter((item: item) => {
       return item['completed'] === true;
     })?.length;
+    const numberOfOpened: number =
+      numberOfAll - numberOfClosed ? numberOfAll - numberOfClosed : 0;
 
     // Get the earliest created_at date
     // See the MDN docs here, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
@@ -157,19 +159,28 @@ const useNumberOfTasks = (
       now // Initial value
     );
     const durationDays = moment(now).diff(earliestCreatedAt, 'days', true);
+    const velocityPerDays = Math.round(numberOfClosed / durationDays)
+      ? Math.round((numberOfClosed / durationDays) * 10) / 10
+      : 0; // Daily basis including Saturdays and Sundays
+    const remainingDevDays = Math.round(numberOfOpened / velocityPerDays)
+      ? Math.round(numberOfOpened / velocityPerDays)
+      : 0;
+    const estimatedCompletionDate = moment()
+      .add(remainingDevDays, 'days')
+      .format('MMM D YYYY');
 
     const output = {
       numberOfAll: numberOfAll,
       numberOfClosed: numberOfClosed ? numberOfClosed : 0,
-      numberOfOpened:
-        numberOfAll - numberOfClosed ? numberOfAll - numberOfClosed : 0,
+      numberOfOpened: numberOfOpened ? numberOfOpened : 0,
       durationDays: durationDays ? durationDays : 0,
       velocityPerDays: Math.round((numberOfClosed / durationDays) * 7)
         ? Math.round(((numberOfClosed / durationDays) * 70) / 5) / 10
-        : 0,
+        : 0, // weekday basis
       velocityPerWeeks: Math.round((numberOfClosed / durationDays) * 7)
         ? Math.round((numberOfClosed / durationDays) * 70) / 10
-        : 0
+        : 0,
+      estimatedCompletionDate: estimatedCompletionDate
     };
     return output;
   };
@@ -184,7 +195,8 @@ const useNumberOfTasks = (
     numberOfClosed: 0,
     numberOfOpened: 0,
     velocityPerDays: 0,
-    velocityPerWeeks: 0
+    velocityPerWeeks: 0,
+    estimatedCompletionDate: '--'
   };
 
   if (error) {

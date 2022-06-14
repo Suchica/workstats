@@ -29,7 +29,7 @@ const VelocityOfTaskClose = ({ number }: PropTypes) => {
         </div>
         <div>
           <div className='text-gray-400 text-sm md:text-base'>
-            Vel. of cls tasks
+            Vel. of cls. tasks
           </div>
           <div className='hidden md:contents md:text-2xl md:font-bold md:text-gray-900'>
             {number ? number : 0} <span className='md:text-xl'>times/wk</span>

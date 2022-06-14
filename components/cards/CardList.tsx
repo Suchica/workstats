@@ -19,6 +19,7 @@ import VelocityOfTaskClose from './VelocityOfTaskClose';
 // import GoogleAuthButton from './Auth&SignInButton';
 import GearIconLink from '../common/GearIcon';
 import { useNumberOfTasks } from '../../services/asanaServices.client';
+import EstimatedDateOfCompletion from './EstimatedDateOfTaskEnd';
 
 interface PropTypes {
   numberOfMentioned: number;
@@ -88,7 +89,7 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-3 md:gap-6 grid-cols-2 lg:grid-cols-3'>
+        <div className='grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-3'>
           <NumberOfCommits
             githubOwnerName={githubOwnerName}
             githubRepoName={githubRepoName}
@@ -117,10 +118,13 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-3 md:gap-6 grid-cols-2 lg:grid-cols-3'>
+        <div className='grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-3'>
           <NumberOfCloseTasks number={numberOfTasks.numberOfClosed} />
           <NumberOfOpenTasks number={numberOfTasks.numberOfOpened} />
           <VelocityOfTaskClose number={numberOfTasks.velocityPerWeeks} />
+          <EstimatedDateOfCompletion
+            date={numberOfTasks.estimatedCompletionDate}
+          />
         </div>
         <div className='flex'>
           <h2 className='text-xl mt-4 mb-2'>Communication - Slack</h2>
@@ -131,7 +135,7 @@ const CardList = ({
             alt='Gear icon links to user settings'
           />
         </div>
-        <div className='grid gap-3 md:gap-6 grid-cols-2 lg:grid-cols-3'>
+        <div className='grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-3'>
           <NumberOfMentioned data={numberOfMentioned} />
           <NumberOfReplies data={numberOfReplies} />
           <NumberOfNewSent data={numberOfNewSent} />
