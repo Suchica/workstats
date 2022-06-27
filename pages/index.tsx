@@ -19,13 +19,11 @@ import {
   countRepliesInSlack,
   listTimestampInSlack,
   slackConversationHistory,
-  slackConversationList,
-  slackSearchFromServer
+  slackConversationList
 } from '../services/slackServices.server';
 import getAUserDoc from '../services/getAUserDocFromFirebase';
 
 interface PropTypes {
-  numberOfMentioned: number;
   numberOfNewSent: number;
   numberOfReplies: number;
   asanaWorkspaceId: string;
@@ -38,11 +36,12 @@ interface PropTypes {
   githubUserName: string;
   githubAccessToken: string;
   profileList: UserType;
+  slackAccessToken: string;
+  searchQuery: string;
   uid: string;
 }
 
 export default function Home({
-  numberOfMentioned,
   numberOfNewSent,
   numberOfReplies,
   asanaWorkspaceId,
@@ -55,6 +54,8 @@ export default function Home({
   githubUserName,
   githubAccessToken,
   profileList,
+  slackAccessToken,
+  searchQuery,
   uid
 }: PropTypes) {
   const contentLong =
@@ -75,7 +76,6 @@ export default function Home({
             <ButtonList />
             <SpecifyPeriodFromTo />
             <CardList
-              numberOfMentioned={numberOfMentioned}
               numberOfNewSent={numberOfNewSent}
               numberOfReplies={numberOfReplies}
               asanaWorkspaceId={asanaWorkspaceId}
@@ -87,6 +87,8 @@ export default function Home({
               githubUserId={githubUserId}
               githubUserName={githubUserName}
               githubAccessToken={githubAccessToken}
+              slackAccessToken={slackAccessToken}
+              searchQuery={searchQuery}
               uid={uid}
             />
             <div className='h-20'></div>
@@ -155,17 +157,10 @@ export const getServerSideProps: GetServerSideProps = async (
     // Parameters for slack
     const searchQuery: string | undefined =
       userDoc?.slack?.workspace?.[0]?.memberId;
-    const slackUserToken = `Bearer ${userDoc?.slack?.workspace?.[0]?.accessToken}`;
-
-    // Tabulate number of times a user has been mentioned in all slack public channels
-    const numberOfMentioned = await slackSearchFromServer(
-      // @ts-ignore
-      searchQuery,
-      slackUserToken
-    );
+    const slackAccessToken = `Bearer ${userDoc?.slack?.workspace?.[0]?.accessToken}`;
 
     // Tabulate number of times a user has newly sent messages in all slack public channels
-    const channelList = await slackConversationList(slackUserToken);
+    const channelList = await slackConversationList(slackAccessToken);
     let numberOfNewSent = 0;
     const numberOfNewSentPromises = [];
     for (let x in channelList) {
@@ -175,7 +170,7 @@ export const getServerSideProps: GetServerSideProps = async (
           channel,
           // @ts-ignore
           searchQuery,
-          slackUserToken
+          slackAccessToken
         )
       );
     }
@@ -190,7 +185,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
     channelList.map((channel: string) => {
       listTimestampInSlackPromises.push(
-        listTimestampInSlack(channel, slackUserToken)
+        listTimestampInSlack(channel, slackAccessToken)
       );
     });
 
@@ -205,7 +200,7 @@ export const getServerSideProps: GetServerSideProps = async (
               timestamp,
               // @ts-ignore
               searchQuery,
-              slackUserToken
+              slackAccessToken
             )
           );
         });
@@ -221,7 +216,6 @@ export const getServerSideProps: GetServerSideProps = async (
     // Pass data to the page via props
     return {
       props: {
-        numberOfMentioned,
         numberOfNewSent,
         numberOfReplies,
         asanaUserId,
@@ -234,6 +228,8 @@ export const getServerSideProps: GetServerSideProps = async (
         githubUserName,
         githubAccessToken,
         profileList,
+        slackAccessToken,
+        searchQuery,
         uid
       }
     };

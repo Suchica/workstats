@@ -1,19 +1,3 @@
-// Slack API method: search.messages
-const slackSearchFromServer = async (searchQuery: string, token: string) => {
-  // Common part of each function
-  const myHeaders = new Headers();
-  myHeaders.append('Authorization', token);
-  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-
-  // This URL itself will be changed to a temporary argument later.
-  const slackURL = `https://slack.com/api/search.messages?query=${searchQuery}`;
-  const res = await fetch(slackURL, {
-    headers: myHeaders
-  });
-  const data = await res.json();
-  return data;
-};
-
 // Slack API method: conversation.history
 // Obtain the number of times a user has posted a new message on a given channel
 const slackConversationHistory = async (
@@ -132,7 +116,6 @@ const postMessageToSlack = async () => {
 };
 
 export {
-  slackSearchFromServer,
   slackConversationHistory,
   slackConversationList,
   countRepliesInSlack,

@@ -3,10 +3,10 @@ import useSWR from 'swr';
 // HTTP endpoint v3 (REST API)
 const base = 'https://api.github.com';
 const options = {
-  shouldRetryOnError: false,
-  revalidateIfStale: false,
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false
+  shouldRetryOnError: false, // Default is true
+  revalidateIfStale: false, // Default is true
+  revalidateOnFocus: false, // Default is true
+  revalidateOnReconnect: false // Default is true
 };
 
 // Request a user's GitHub identity

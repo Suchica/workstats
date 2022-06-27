@@ -20,9 +20,9 @@ import VelocityOfTaskClose from './VelocityOfTaskClose';
 import GearIconLink from '../common/GearIcon';
 import { useNumberOfTasks } from '../../services/asanaServices.client';
 import EstimatedDateOfCompletion from './EstimatedDateOfTaskEnd';
+import { useNumberOfMentioned } from '../../services/slackServices.client';
 
 interface PropTypes {
-  numberOfMentioned: number;
   numberOfNewSent: number;
   numberOfReplies: number;
   asanaWorkspaceId: string;
@@ -34,12 +34,13 @@ interface PropTypes {
   githubUserId: number;
   githubUserName: string;
   githubAccessToken: string;
+  slackAccessToken: string;
+  searchQuery: string;
   uid: string;
 }
 
 // @ts-ignore
 const CardList = ({
-  numberOfMentioned,
   numberOfNewSent,
   numberOfReplies,
   asanaWorkspaceId,
@@ -51,6 +52,8 @@ const CardList = ({
   githubUserId,
   githubUserName,
   githubAccessToken,
+  slackAccessToken,
+  searchQuery,
   uid
 }: PropTypes) => {
   // const numberOfMeetings = 0;
@@ -61,6 +64,10 @@ const CardList = ({
     asanaRefreshToken,
     uid
   );
+  const numberOfMentioned = useNumberOfMentioned({
+    searchQuery,
+    slackAccessToken
+  });
 
   return (
     <>

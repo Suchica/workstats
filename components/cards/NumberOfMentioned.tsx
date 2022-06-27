@@ -27,12 +27,12 @@ const NumberOfMentioned = ({ data }) => {
             # of mentioned
           </div>
           <div className='hidden md:contents md:text-2xl md:font-bold md:text-gray-900'>
-            {data.messages?.total ? data.messages?.total : 0} times
+            {data ? data : 0} times
           </div>
         </div>
       </div>
       <div className='md:hidden text-xl font-bold text-gray-900'>
-        {data.messages?.total ? data.messages?.total : 0} times
+        {data ? data : 0} times
       </div>
     </div>
   );
