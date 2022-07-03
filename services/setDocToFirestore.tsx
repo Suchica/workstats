@@ -10,6 +10,14 @@ const createUserDoc = async (docId: string) => {
   return;
 };
 
+const createNumbersDoc = async (docId: string) => {
+  const docRef = doc(db, 'numbers', docId);
+  const docData: NumbersType = {};
+  const option = { merge: true };
+  await setDoc(docRef, docData, option);
+  return;
+};
+
 const handleSubmitBasicInfo = async (
   event: React.FormEvent<HTMLFormElement>,
   docId: string
@@ -324,6 +332,7 @@ const UpdInsSlackNumbers = async ({
 };
 
 export {
+  createNumbersDoc,
   createUserDoc,
   handleSubmitBasicInfo,
   handleSubmitGithubAccessToken,

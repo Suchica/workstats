@@ -71,13 +71,13 @@ const CardList = ({
 }: PropTypes) => {
   // const numberOfMeetings = 0;
   const [numberOfCommits, setNumberOfCommits] = useState(
-    numbersDoc.github?.numberOfCommits.allPeriods || 0
+    numbersDoc?.github?.numberOfCommits.allPeriods || 0
   );
   const [numberOfPullRequests, setNumberOfPullRequests] = useState(
-    numbersDoc.github?.numberOfPullRequests.allPeriods || 0
+    numbersDoc?.github?.numberOfPullRequests.allPeriods || 0
   );
   const [numberOfReviews, setNumberOfReviews] = useState(
-    numbersDoc.github?.numberOfReviews.allPeriods || 0
+    numbersDoc?.github?.numberOfReviews.allPeriods || 0
   );
   const numberOfCommitsCalc = useNumberOfCommits(
     githubOwnerName,
@@ -114,22 +114,22 @@ const CardList = ({
 
   // Aggregate numbers from Asana
   const [numberOfTasks, setNumberOfTasks] = useState(
-    numbersDoc.asana?.numberOfTasks.allPeriods || 0
+    numbersDoc?.asana?.numberOfTasks.allPeriods || 0
   );
   const [numberOfTasksClosed, setNumberOfTasksClosed] = useState(
-    numbersDoc.asana?.numberOfTasksClosed.allPeriods || 0
+    numbersDoc?.asana?.numberOfTasksClosed.allPeriods || 0
   );
   const [numberOfTasksOpen, setNumberOfTasksOpen] = useState(
-    numbersDoc.asana?.numberOfTasksOpen.allPeriods || 0
+    numbersDoc?.asana?.numberOfTasksOpen.allPeriods || 0
   );
   const [velocityPerDay, setVelocityPerDay] = useState(
-    numbersDoc.asana?.velocityPerDay.allPeriods || 0
+    numbersDoc?.asana?.velocityPerDay.allPeriods || 0
   );
   const [velocityPerWeek, setVelocityPerWeek] = useState(
-    numbersDoc.asana?.velocityPerWeek.allPeriods || 0
+    numbersDoc?.asana?.velocityPerWeek.allPeriods || 0
   );
   const [estimatedCompletionDate, setEstimatedCompletionDate] = useState(
-    numbersDoc.asana?.estimatedCompletionDate.allPeriods || '--'
+    numbersDoc?.asana?.estimatedCompletionDate.allPeriods || '--'
   );
   const [asanaAccessToken, setAsanaAccessToken] = useState(
     asanaOAuthAccessToken
@@ -172,10 +172,10 @@ const CardList = ({
 
   // Aggregate numbers from Slack
   const [numberOfMentioned, setNumberOfMentioned] = useState(
-    numbersDoc.slack?.numberOfMentioned.allPeriods || 0
+    numbersDoc?.slack?.numberOfMentioned.allPeriods || 0
   );
   const [numberOfTotalSent, setNumberOfTotalSent] = useState(
-    numbersDoc.slack?.numberOfTotalSent.allPeriods || 0
+    numbersDoc?.slack?.numberOfTotalSent.allPeriods || 0
   );
   const numberOfTotalSentCalc = useSlackSearch({
     slackMemberId,
@@ -193,10 +193,10 @@ const CardList = ({
   }, [numberOfMentionedCalc, numberOfTotalSentCalc]);
   const slackChannelList = useSlackChannelList({ slackAccessToken });
   const [numberOfNewSent, setNumberOfNewSent] = useState(
-    numbersDoc.slack?.numberOfNewSent.allPeriods || 0
+    numbersDoc?.slack?.numberOfNewSent.allPeriods || 0
   );
   const [numberOfReplies, setNumberOfReplies] = useState(
-    numbersDoc.slack?.numberOfReplies.allPeriods || 0
+    numbersDoc?.slack?.numberOfReplies.allPeriods || 0
   );
   useEffect(() => {
     // Since this is an unnamed asynchronous function, it is enclosed in parentheses for immediate execution upon declaration

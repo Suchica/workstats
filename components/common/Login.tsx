@@ -21,7 +21,10 @@ import GoogleCalendarIcon from '../../public/google-calendar-svgrepo-com.svg';
 import GitHubIcon2 from '../../public/github-svgrepo-com.svg';
 
 // Next related and Custom services
-import { createUserDoc } from '../../services/setDocToFirestore';
+import {
+  createNumbersDoc,
+  createUserDoc
+} from '../../services/setDocToFirestore';
 import Head from 'next/head';
 
 // Scopes in detail: https://developers.google.com/identity/protocols/oauth2/scopes#calendar
@@ -36,6 +39,7 @@ const Login = () => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const user = result.user;
         createUserDoc(user.uid);
+        createNumbersDoc(user.uid);
       })
       .then(() => {
         window.location.reload();
@@ -63,6 +67,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         createUserDoc(user.uid);
+        createNumbersDoc(user.uid);
       })
       .then(() => {
         window.location.reload();

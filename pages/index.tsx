@@ -103,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (
     // the user is authenticated!
     const { uid } = token;
     const userDoc = await getAUserDoc(uid);
-    const numbersDoc = await getANumbersDoc(uid);
+    const numbersDoc = (await getANumbersDoc(uid)) || {};
 
     // Profile list to be displayed on the left side
     const profileList = {
@@ -147,8 +147,9 @@ export const getServerSideProps: GetServerSideProps = async (
       : null;
 
     // Parameters for slack
-    const slackMemberId: string | undefined =
-      userDoc?.slack?.workspace?.[0]?.memberId;
+    const slackMemberId = userDoc?.slack?.workspace?.[0]?.memberId
+      ? userDoc.slack.workspace[0].memberId
+      : null;
     const slackAccessToken = `Bearer ${userDoc?.slack?.workspace?.[0]?.accessToken}`;
 
     // Pass data to the page via props
