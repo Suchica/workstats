@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { AuthProvider } from '../auth';
 import Layout from '../components/common/Layout';
+import { GlobalContextProvider } from '../context/GlobalContextProvider';
 import '../styles/globals.css';
 // import Script from "next/script";
 
@@ -39,8 +40,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel='icon' href='/icononly_transparent_nobuffer.ico' />
       </Head>
       <AuthProvider>
-        <Layout>
-          {/* <Script
+        <GlobalContextProvider>
+          <Layout>
+            {/* <Script
           src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"
           strategy="beforeInteractive"
         />
@@ -48,8 +50,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://unpkg.com/flowbite@1.3.3/dist/flowbite.min.css"
         /> */}
-          <Component {...pageProps} />
-        </Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </GlobalContextProvider>
       </AuthProvider>
     </>
   );
