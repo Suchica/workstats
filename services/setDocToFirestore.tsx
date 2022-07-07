@@ -96,8 +96,7 @@ const handleSubmitAsanaAccessToken = async (
   refreshToken?: string
 ) => {
   const docRef = doc(db, 'users', docId);
-  const docData: UserType =
-    // If refreshToken is falsy and is not empty string then go to ?, otherwise go to :
+  const docData =
     !refreshToken && refreshToken !== ''
       ? {
           asana: {
@@ -191,39 +190,6 @@ const handleSubmitCommunicationActivity = async (
 
   await setDoc(docRef, docData, option);
   alert('Communication activity info updated!');
-  return;
-};
-
-const handleSubmitGoogleAccessToken = async (
-  docId: string,
-  accessToken: string,
-  refreshToken?: string
-) => {
-  const docRef = doc(db, 'users', docId);
-  const docData: UserType =
-    // If refreshToken is falsy and is not empty string then go to ?, otherwise go to :
-    !refreshToken && refreshToken !== ''
-      ? {
-          google: {
-            workspace: [
-              {
-                accessToken
-              }
-            ]
-          }
-        }
-      : {
-          google: {
-            workspace: [
-              {
-                accessToken,
-                refreshToken
-              }
-            ]
-          }
-        };
-  const option = { merge: true };
-  await setDoc(docRef, docData, option);
   return;
 };
 
@@ -365,32 +331,6 @@ const UpdInsSlackNumbers = async ({
   return;
 };
 
-interface UpdInsGoogleCalendarNumbersProps {
-  docId: string;
-  numberOfEventsAllPeriods: number;
-  totalTimeOfEventsAllPeriods: number;
-}
-const UpdInsGoogleCalendarNumbers = async ({
-  docId,
-  numberOfEventsAllPeriods,
-  totalTimeOfEventsAllPeriods
-}: UpdInsGoogleCalendarNumbersProps) => {
-  const docRef = doc(db, 'numbers', docId);
-  const docData: NumbersType = {
-    googleCalendar: {
-      numberOfEvents: {
-        allPeriods: numberOfEventsAllPeriods
-      },
-      totalTimeOfEvents: {
-        allPeriods: totalTimeOfEventsAllPeriods
-      }
-    }
-  };
-  const option = { merge: true };
-  await setDoc(docRef, docData, option);
-  return;
-};
-
 export {
   createNumbersDoc,
   createUserDoc,
@@ -401,10 +341,8 @@ export {
   handleSubmitTaskTicket,
   handleSubmitSlackAccessToken,
   handleSubmitCommunicationActivity,
-  handleSubmitGoogleAccessToken,
   handleSubmitSurveyWhyYouLeave,
   UpdInsAsanaNumbers,
   UpdInsGithubNumbers,
-  UpdInsGoogleCalendarNumbers,
   UpdInsSlackNumbers
 };

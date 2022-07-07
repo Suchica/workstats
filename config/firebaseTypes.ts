@@ -16,7 +16,6 @@ interface UserType extends Record<string, unknown> {
   birth?: Timestamp | number; // DB has Timestamp type but birth could be converted to number
   companyName?: string;
   department?: string;
-  documentId?: string;
   firstName?: string;
   github?: {
     repositories?: Array<{
@@ -28,14 +27,7 @@ interface UserType extends Record<string, unknown> {
     userName?: string;
     accessToken?: string;
   };
-  google?: {
-    workspace: Array<{
-      accessToken?: string;
-      gmail?: string;
-      refreshToken?: string;
-      userName?: string;
-    }>;
-  };
+  documentId?: string;
   lastName?: string;
   middleName?: string;
   rank?: string;
@@ -79,14 +71,6 @@ interface NumbersType extends Record<string, unknown> {
       allPeriods: number;
     };
     numberOfReviews: {
-      allPeriods: number;
-    };
-  };
-  googleCalendar?: {
-    numberOfEvents: {
-      allPeriods: number;
-    };
-    totalTimeOfEvents: {
       allPeriods: number;
     };
   };

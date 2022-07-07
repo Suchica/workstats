@@ -18,7 +18,6 @@ import {
   handleSubmitBasicInfo,
   handleSubmitCommunicationActivity,
   handleSubmitGithubAccessToken,
-  handleSubmitGoogleAccessToken,
   handleSubmitSlackAccessToken,
   handleSubmitSourceCode,
   handleSubmitTaskTicket
@@ -31,16 +30,13 @@ import { requestGithubUserIdentity } from '../services/githubServices.client';
 import { requestAsanaUserIdentity } from '../services/asanaServices.client';
 import DisconnectWithAsanaButton from '../components/buttons/DisconnectWithAsanaButton';
 import { requestSlackUserIdentity } from '../services/slackServices.client';
-import DisconnectWithSlackButton from '../components/buttons/DisconnectWithSlackButton';
-import DisconnectWithGoogleButton from '../components/buttons/DisconnectWithGoogleButton';
-import { requestGoogleUserIdentity } from '../services/googleCalendar.client';
+import DisconnectWithSlackButton from '../components/buttons/DisconnectWithSlack';
 
 interface UserSettingsProps {
   uid: string;
   userDoc: UserType | null;
   isAsanaAuthenticated: boolean;
   isGithubAuthenticated: boolean;
-  isGoogleAuthenticated: boolean;
   isSlackAuthenticated: boolean;
 }
 
@@ -49,7 +45,6 @@ const useUserSettings = ({
   userDoc,
   isAsanaAuthenticated,
   isGithubAuthenticated,
-  isGoogleAuthenticated,
   isSlackAuthenticated
 }: UserSettingsProps) => {
   // If a user click 'Connect with xxxxx' button to agree to authenticate WorkStats with xxxxx scopes, a code will be passed to the redirect URL.
@@ -63,9 +58,6 @@ const useUserSettings = ({
     : undefined;
   const slackCode = htmlParams.startsWith('?slack=')
     ? decodeURIComponent(htmlParams.split(/[=&]+/)[3]) // ['slack', 'true', 'code', 'codeValue']
-    : undefined;
-  const googleCode = htmlParams.startsWith('?google=')
-    ? decodeURIComponent(htmlParams.split(/[=&]+/)[5]) // ['google', 'true', 'state', 'stateValue', 'code', 'codeValue', 'scope', 'scopeValue']
     : undefined;
 
   // If code is defined and isGithubAuthenticatedState is false, call /api/get-github-access-token to exchange the code for a GitHub access token
@@ -110,6 +102,7 @@ const useUserSettings = ({
   const [asanaUserId, setAsanaUserId] = useState('');
   useEffect(() => {
     if (asanaCode && !isAsanaAuthenticatedState) {
+      // console.log({ asanaCode, isAsanaAuthenticatedState });
       const url = '/api/get-asana-access-token';
       const headers = new Headers();
       headers.append('Accept', 'application/json');
@@ -216,56 +209,6 @@ const useUserSettings = ({
     uid,
     slackWorkspaceName
   ]);
-
-  // If googleAccessToken is defined and isGoogleAuthenticatedState is false, update/insert the access token to Firestore
-  const [isGoogleAuthenticatedState, setIsGoogleAuthenticatedState] = useState(
-    isGoogleAuthenticated
-  );
-  const [googleAccessToken, setGoogleAccessToken] = useState('');
-  const [googleRefreshToken, setGoogleRefreshToken] = useState('');
-  useEffect(() => {
-    if (googleCode && !isGoogleAuthenticatedState) {
-      const url = '/api/google-calendar/get-access-token';
-      const headers = new Headers();
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/json');
-      const body = {
-        grant_type: 'authorization_code',
-        code: googleCode,
-        refresh_token: '' // No refresh tokens yet as this will be the first exchange here.
-      };
-      fetch(url, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.access_token && res.refresh_token) {
-            setGoogleAccessToken(res.access_token);
-            setGoogleRefreshToken(res.refresh_token);
-          }
-        });
-    }
-  }, [googleCode, isGoogleAuthenticatedState]);
-
-  useEffect(() => {
-    if (
-      googleAccessToken &&
-      googleRefreshToken &&
-      !isGoogleAuthenticatedState
-    ) {
-      handleSubmitGoogleAccessToken(
-        uid,
-        googleAccessToken,
-        googleRefreshToken
-      ).then(() => {
-        setIsGoogleAuthenticatedState(true);
-        alert('Google and WorkStats are successfully connected.');
-        window.location.replace(window.location.pathname);
-      });
-    }
-  }, [googleAccessToken, googleRefreshToken, isGoogleAuthenticatedState, uid]);
 
   return (
     <>
@@ -669,73 +612,6 @@ const useUserSettings = ({
         </div>
       </form>
       <div className='flex'>
-        <h2 className='text-xl mt-8 mb-2 ml-6 underline underline-offset-4'>
-          Communication Activity / Google
-        </h2>
-        <QuestionMark mt={9} mb={1} href='/help/how-to-get-google-info' />
-        {isGoogleAuthenticatedState ? (
-          <DisconnectWithGoogleButton
-            label='Disconnect with Google'
-            uid={uid}
-            accessToken={userDoc?.google?.workspace?.[0]?.accessToken}
-          />
-        ) : (
-          <RequestOAuthButton
-            label='Connect with Google'
-            handleClick={requestGoogleUserIdentity}
-          />
-        )}
-      </div>
-      <form
-        name='communication-activity-google'
-        // onSubmit={}
-        method='post'
-        target='_self'
-        autoComplete='off'
-      >
-        <div className='flex items-center'>
-          <h3 className='ml-6 w-28'>Workspace 1 :</h3>
-          <div className='flex flex-wrap'>
-            <InputBox
-              label={'Gmail'}
-              name={'gmail1'}
-              placeholder={'nishio.hiroshi@suchica.com'}
-              width={36}
-              value={userDoc?.google?.workspace?.[0]?.gmail}
-              disabled={true}
-              bgColor={'bg-gray-200'}
-            />
-            <InputBox
-              label={'User Name'}
-              name={'googleUserName1'}
-              placeholder={'Hiroshi Nishio'}
-              width={36}
-              value={userDoc?.google?.workspace?.[0]?.userName}
-              disabled={true}
-              bgColor={'bg-gray-200'}
-            />
-            <InputBox
-              label={'Access Token'}
-              name={'googleAccessToken1'}
-              placeholder={'No Access Token is set'}
-              width={36}
-              value={userDoc?.google?.workspace?.[0]?.accessToken}
-              disabled={true}
-              bgColor={'bg-gray-200'}
-            />
-            <InputBox
-              label={'Refresh Token'}
-              name={'googleRefreshToken1'}
-              placeholder={'No Access Token is set'}
-              width={36}
-              value={userDoc?.google?.workspace?.[0]?.refreshToken}
-              disabled={true}
-              bgColor={'bg-gray-200'}
-            />
-          </div>
-        </div>
-      </form>
-      <div className='flex'>
         <Link href='/cancel-membership'>
           <a
             className='mr-3'
@@ -792,11 +668,6 @@ export const getServerSideProps: GetServerSideProps = async (
       userDoc?.slack?.workspace?.[0]?.accessToken !== ''
         ? true
         : false;
-    const isGoogleAuthenticated =
-      userDoc?.google?.workspace?.[0]?.accessToken &&
-      userDoc?.google?.workspace?.[0]?.accessToken !== ''
-        ? true
-        : false;
 
     return {
       props: {
@@ -804,7 +675,6 @@ export const getServerSideProps: GetServerSideProps = async (
         userDoc,
         isAsanaAuthenticated,
         isGithubAuthenticated,
-        isGoogleAuthenticated,
         isSlackAuthenticated
       }
     };

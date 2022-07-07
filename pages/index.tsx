@@ -27,8 +27,6 @@ interface PropTypes {
   githubUserId: number;
   githubUserName: string;
   githubAccessToken: string;
-  googleAccessToken: string;
-  googleRefreshToken: string;
   numbersDoc: NumbersType;
   profileList: UserType;
   slackAccessToken: string;
@@ -46,8 +44,6 @@ export default function Home({
   githubUserId,
   githubUserName,
   githubAccessToken,
-  googleAccessToken,
-  googleRefreshToken,
   numbersDoc,
   profileList,
   slackAccessToken,
@@ -81,8 +77,6 @@ export default function Home({
               githubUserId={githubUserId}
               githubUserName={githubUserName}
               githubAccessToken={githubAccessToken}
-              googleOAuthAccessToken={googleAccessToken}
-              googleRefreshToken={googleRefreshToken}
               numbersDoc={numbersDoc}
               slackAccessToken={slackAccessToken}
               slackMemberId={slackMemberId}
@@ -125,7 +119,7 @@ export const getServerSideProps: GetServerSideProps = async (
       avatarUrl: userDoc?.avatarUrl ? userDoc.avatarUrl : ''
     };
 
-    // Parameters for Asana
+    // Parameters for asana
     const asanaOAuthAccessToken = userDoc?.asana?.accessToken
       ? userDoc.asana.accessToken
       : null;
@@ -137,7 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (
       ? userDoc.asana.workspace[0].workspaceId
       : null;
 
-    // Parameters for GitHub
+    // Parameters for github
     const githubRepoName = userDoc?.github?.repositories?.[0]?.repo
       ? userDoc.github.repositories[0].repo
       : null;
@@ -152,19 +146,11 @@ export const getServerSideProps: GetServerSideProps = async (
       ? userDoc.github.accessToken
       : null;
 
-    // Parameters for Slack
+    // Parameters for slack
     const slackMemberId = userDoc?.slack?.workspace?.[0]?.memberId
       ? userDoc.slack.workspace[0].memberId
       : null;
     const slackAccessToken = `Bearer ${userDoc?.slack?.workspace?.[0]?.accessToken}`;
-
-    // Parameters for Google Calendar
-    const googleAccessToken = userDoc?.google?.workspace?.[0]?.accessToken
-      ? userDoc.google.workspace[0].accessToken
-      : null;
-    const googleRefreshToken = userDoc?.google?.workspace?.[0]?.refreshToken
-      ? userDoc.google.workspace[0].refreshToken
-      : null;
 
     // Pass data to the page via props
     return {
@@ -178,8 +164,6 @@ export const getServerSideProps: GetServerSideProps = async (
         githubUserId,
         githubUserName,
         githubAccessToken,
-        googleAccessToken,
-        googleRefreshToken,
         numbersDoc,
         profileList,
         slackAccessToken,

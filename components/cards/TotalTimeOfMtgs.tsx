@@ -1,7 +1,4 @@
-interface PropTypes {
-  data: number;
-}
-const TotalTimeOfMeetings = ({ data }: PropTypes) => {
+const TotalTimeOfMeetings = () => {
   return (
     <div className='bg-white shadow rounded-lg p-3 md:p-4 hover:bg-slate-200'>
       <div className='flex space-x-4 items-center'>
@@ -34,13 +31,11 @@ const TotalTimeOfMeetings = ({ data }: PropTypes) => {
             Ttl time of mtgs
           </div>
           <div className='hidden md:contents md:text-2xl md:font-bold md:text-gray-900'>
-            {data} hours
+            123 hours
           </div>
         </div>
       </div>
-      <div className='md:hidden text-xl font-bold text-gray-900'>
-        {data} hours
-      </div>
+      <div className='md:hidden text-xl font-bold text-gray-900'>123 hours</div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const SpecifyPeriodFromTo = () => {
   // }, []);
 
   return (
-    <div className='flex flex-wrap px-3 pt-1 mx-2 my-1 items-center'>
+    <div className='flex flex-wrap px-3 py-1 mx-2 my-1 items-center'>
       <span className='text-slate-800 px-2'>From: </span>
       <div className='relative'>
         <div className='flex absolute inset-y-0 left-0 items-center pl-1.5 md:pl-3 pointer-events-none'>
