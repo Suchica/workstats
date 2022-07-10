@@ -92,6 +92,21 @@ export default function PrivacyPolicy() {
           <li key={7}>Find and prevent fraud</li>
         </ul>
 
+        <h3 className='text-xl py-3'>
+          3-1. How we use your data from Google Calendar API
+        </h3>
+
+        <p className='py-1'>
+          For example, with regard to the ability to link data with Google
+          Calendar to display aggregated user data, the number of meetings,
+          total time, etc. are only aggregated, and other data obtained in the
+          interaction with the Google Calendar API is not stored, but discarded
+          The other data retrieved during the interaction with the Google
+          Calendar API is not stored and is discarded. Only the number of
+          meetings and their total time are stored in WorkStats as aggregate
+          results.
+        </p>
+
         <h2 className='text-2xl py-4'>4. Log Files</h2>
 
         <p className='py-1'>
